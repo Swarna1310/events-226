@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+ <form action="searchevents.php"
+          method="post">
+        <fieldset>
+                <p>
+            	<input type="radio"
+            	       name="searchtype"
+            	       value="all" 
+                       id="all"
+            	       checked onclick="document.getElementById('fielddiv').style.display='none';document.getElementById('optionsdiv').style.display='none'" /> Search all events
+            	<input type="radio"
+            	       name="searchtype"
+            	       value="byfield"
+                       id="byfield" onclick="document.getElementById('fielddiv').style.display='block';document.getElementById('optionsdiv').style.display='none'"/> Search by field 
+		          <input type="radio"
+            	       name="searchtype"
+            	       value="advanced" 
+                       id="advanced" onclick="document.getElementById('fielddiv').style.display='none';document.getElementById('optionsdiv').style.display='block';showdiv('all')"/> Advanced Search
+           	</p>
+
+           <div id="fielddiv" style="display:none">    
+               <p>
+                   <label>Search by :</label>
+                   <select name="field" id="searchfield" onchange="showdiv('field')">
+ 		                 <option value="none" selected>Select</option>
+                     <option value="eventname">Event Name</option>
+                     <option value="location">Location</option>
+                     <option value="month">Month</option>
+ 		                 <option value="charge">Free/Paid</option>
+ 		                 <option value="category">Category</option>
+                   </select>
+               </p>
+	   </div>
+            <div id="optionsdiv" style="display:none">
+            <div id="eventnamediv">
+               Event Name : <input type="text" name="name" id="name"></input><br><br>
+            </div>
+            <div id="locationdiv">
+               Enter Location : <input type="text" name="location" id="location"></input><br><br>
+            </div>
+            <div id="monthdiv">   
+           <label>Select Month : </label>
+            <select name="month">
+               <option value="none" selected>Select</option>
+               <option value="1">Jan</option>
+               <option value="2">Feb</option>
+ 		           <option value="3">Mar</option>
+ 		           <option value="4">Apr</option>
+		           <option value="5">May</option>
+		           <option value="6">June</option>
+		           <option value="7">July</option>
+		           <option value="8">Aug</option>
+		           <option value="9">Sep</option>
+		           <option value="10">Oct</option>
+		           <option value="11">Nov</option>
+		           <option value="12">Dec</option>
+                   </select><br><br>
+             </div>   
+             <div id="chargediv">   
+                <label>Type of event : </label>
+                <input type="checkbox"
+                       name="free"
+                       value="free" /> Free!
+                <input type="checkbox"
+                       name="paid"
+                       value="paid" />  Paid
+			<br><br>
+			</div>
+			<div id="categorydiv">
+		<label>Choose a Category : </label>
+		   <select name="category">
+                       <option value="none" selected>Select</option>
+                       <option value="charity">Charity</option>
+                       <option value="entertainment">Entertainment</option>
+ 		       <option value="food">Food</option>
+ 		       <option value="health">Health</option>
+		       <option value="sports">Sports</option>
+		       <option value="technology">Technology</option>
+                   </select>
+				<br><br>
+             </div>
+            </div>   
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+
+        </fieldset>
+    </form>
+<script type="text/javascript">
+function showdiv(selected){
+	if(selected === 'all'){option = 'all';}
+	else{
+		option = document.getElementById('searchfield').value;
+		option = option + 'div';
+  }
+    var div = document.getElementById('optionsdiv');
+    var subDiv = div.getElementsByTagName('div');
+
+    for(var i = 0; i < subDiv.length; i++) {
+        var elem = subDiv[i];
+        if(option === 'all')
+        {
+         elem.style.display = 'block';
+        }
+        else {
+        	if(elem.id === option) {
+        		elem.style.display = 'block';
+        	}
+        	else{
+        		elem.style.display = 'none';
+        	}
+        }
+    }
+    div.style.display = 'block';
+}
+</script>
+</body>
+
+</html>
